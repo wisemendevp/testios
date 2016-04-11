@@ -29,7 +29,7 @@
     self.hasPendingOperation = NO;
     
     // Hide the picker view
-    [self.viewController dismissModalViewControllerAnimated:YES];
+  //  [self.viewController dismissModalViewControllerAnimated:YES];
 }
 
 @end
