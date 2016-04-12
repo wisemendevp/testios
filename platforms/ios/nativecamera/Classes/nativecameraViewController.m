@@ -35,7 +35,13 @@
     // Call the takePicture method on the UIImagePickerController to capture the image.
     [self.picker takePicture];
 }
-
+-(NSString*)generateRandomString:(int)num {
+    NSMutableString* string = [NSMutableString stringWithCapacity:num];
+    for (int i = 0; i < num; i++) {
+        [string appendFormat:@"%C", (unichar)('a' + arc4random_uniform(25))];
+    }
+    return string;
+}
 // Delegate method.  UIImagePickerController will call this method as soon as the image captured above is ready to be processed.  This is also like an event callback in JavaScript.
 -(void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     
@@ -45,7 +51,10 @@
     // Get a file path to save the JPEG
     NSArray* paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString* documentsDirectory = [paths objectAtIndex:0];
-    NSString* filename = @"test.jpg";
+NSString* string = [self generateRandomString:5];
+  NSString * s1 = @".jpg";
+    string = [string stringByAppendingString:s1 ];
+    NSString* filename = string;
     NSString* imagePath = [documentsDirectory stringByAppendingPathComponent:filename];
     
     // Get the image data (blocking; around 1 second)
